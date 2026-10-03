@@ -72,3 +72,22 @@ button.btn.ghost{border:1px solid var(--mist)}
 .note{font-size:.95rem;color:var(--mist);max-width:36rem}
 @media(max-width:720px){.deco{display:none}.hero .btn+.btn{margin:12px 0 0}}
 @media(prefers-reduced-motion:reduce){.astro,.sat{animation:none}}
+
+.lookup .btn{justify-self:start}
+.cardbox{margin-top:24px;max-width:560px;padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(27,37,89,.6)}
+.cardbox .ch{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cardbox .ch h2{margin:0}
+.code{font-weight:700;color:var(--star);letter-spacing:.04em}
+.cardbox svg{display:block;width:100%;height:auto;margin:14px auto}
+.ln{stroke:var(--mist);stroke-width:1.5;stroke-dasharray:4 5;opacity:.3}
+.ln.on{stroke:var(--star);stroke-dasharray:140;stroke-dashoffset:140;opacity:.9;animation:draw 1s ease forwards}
+.sd{fill:none;stroke:var(--mist);stroke-width:1.5;opacity:.6}
+.sd.on{fill:var(--star);stroke:none;opacity:1;filter:drop-shadow(0 0 6px #ffd98a);transform-box:fill-box;transform-origin:center;animation:pop .6s ease both}
+@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.status-text{font-weight:700;margin:0}
+.rew{list-style:none;padding:0;margin:16px 0 0}
+.rew li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);color:var(--mist)}
+.rew li.got{color:var(--moon)}
+.rew li.got b{color:var(--star)}
+.rules{max-width:36rem;color:var(--mist);padding-left:20px}
+@media(prefers-reduced-motion:reduce){.ln.on{animation:none;stroke-dashoffset:0}.sd.on{animation:none}}

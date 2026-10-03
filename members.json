@@ -1,0 +1,17 @@
+{
+  "total": 8,
+  "rules": [
+    "Setiap order yang selesai memberi 1 bintang di kartumu.",
+    "Kumpulkan semua bintang untuk melengkapi rasi dan dapatkan hadiah.",
+    "Ajak teman: kamu dapat 1 bintang bonus saat temanmu menyelesaikan order pertamanya.",
+    "Kode member diberikan setelah order pertamamu selesai."
+  ],
+  "rewards": [
+    { "at": 4, "text": "Diskon xx% untuk order berikutnya" },
+    { "at": 8, "text": "Gratis 1 layanan kecil (misal daily)" }
+  ],
+  "members": {
+    "EYY-0001": { "stamps": 3 },
+    "EYY-0002": { "stamps": 8 }
+  }
+}
