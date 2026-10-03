@@ -1,13 +1,14 @@
+@font-face{font-family:"GI";src:url("GI.ttf") format("truetype");font-weight:100 900;font-display:swap}
 :root{--night:#0a0f2e;--dusk:#1b2559;--mist:#b7c0ee;--moon:#eef1ff;--star:#ffd98a;--nebula:#7c5cd6;--line:rgba(183,192,238,.28)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--moon);font:400 1.05rem/1.65 "Quattrocento Sans",system-ui,sans-serif;background:linear-gradient(180deg,#0a0f2e 0%,#141c4d 55%,#26306e 100%) fixed;min-height:100vh}
+body{margin:0;color:var(--moon);font:400 1.05rem/1.65 "GI","Quattrocento Sans",system-ui,sans-serif;background:linear-gradient(180deg,#0a0f2e 0%,#141c4d 55%,#26306e 100%) fixed;min-height:100vh}
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0}
 #stars i{position:absolute;border-radius:50%;background:#fff;opacity:.15;animation:tw 4s ease-in-out infinite}
 @keyframes tw{50%{opacity:.9}}
 main,header,footer{position:relative;z-index:1}
 .wrap{width:min(960px,100% - 40px);margin:0 auto}
-h1,h2,.brand,.svc-name{font-family:"Cinzel",Georgia,serif;font-weight:700;line-height:1.25}
+h1,h2,.brand,.svc-name{font-family:"GI","Cinzel",Georgia,serif;font-weight:700;line-height:1.25}
 h1{font-size:clamp(1.9rem,5vw,3rem);margin:0 0 18px}
 h2{font-size:clamp(1.4rem,3.4vw,1.9rem);margin:0 0 8px}
 p{margin:0}
@@ -34,7 +35,7 @@ section.block{padding:64px 0;border-top:1px solid var(--line)}
 .price{white-space:nowrap;font-weight:700;color:var(--star)}
 .steps{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
 .steps li{counter-increment:s;padding-top:16px;border-top:2px solid var(--star)}
-.steps li::before{content:counter(s);display:block;font:700 2rem "Cinzel",Georgia,serif;color:var(--star)}
+.steps li::before{content:counter(s);display:block;font:700 2rem "GI","Cinzel",Georgia,serif;color:var(--star)}
 .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
 .proof div{min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:1px dashed var(--mist);border-radius:14px;color:var(--mist);font-size:.95rem}
 details{border-bottom:1px solid var(--line);padding:16px 0}
