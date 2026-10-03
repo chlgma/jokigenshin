@@ -1,12 +1,3 @@
-/* ===== GANTI DATA DI SINI SAJA ===== */
-var CONFIG = {
-  WA_NUMBER: "62xxxxxxxxxx",                        // format 62, tanpa 0 dan tanpa +
-  INSTAGRAM: "https://instagram.com/username",      // ganti username
-  TIKTOK: "https://tiktok.com/@username",           // ganti username
-  ORDER_ENDPOINT: "https://formspree.io/f/XXXXXXXX" // link form dari formspree.io
-};
-/* =================================== */
-
 var ICONS = {
   wa: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><g transform="translate(6.6 6.6) scale(.5)"><path stroke-width="3.2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></g></svg>',
   tiktok: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M15 3c.4 2.6 2 4.2 5 4.5"/></svg>',
@@ -57,7 +48,8 @@ deco.className = "deco";
 deco.setAttribute("aria-hidden", "true");
 deco.innerHTML =
   '<svg class="d-moon" viewBox="0 0 100 100"><mask id="cm"><rect width="100" height="100" fill="#fff"/><circle cx="64" cy="40" r="34" fill="#000"/></mask><circle cx="50" cy="50" r="40" fill="#eef1ff" mask="url(#cm)"/></svg>' +
-  '<svg class="d-planet" viewBox="0 0 120 80"><ellipse cx="60" cy="40" rx="56" ry="13" fill="none" stroke="#ffd98a" stroke-width="3" transform="rotate(-18 60 40)"/><circle cx="60" cy="40" r="24" fill="#7c5cd6"/><path d="M38 34q22 8 44 0M37 46q23 8 46 0" stroke="#b7c0ee" stroke-width="3" fill="none" opacity=".6"/></svg>';
+  '<svg class="d-wind" viewBox="0 0 120 80" fill="none" stroke="#b7c0ee" stroke-width="3" stroke-linecap="round"><path d="M5 30C35 8 80 8 92 30c9 17-16 24-20 10-3-10 12-12 14-5"/><path d="M5 52C30 40 60 44 78 54"/><path d="M20 68c20-6 40-4 56 4"/></svg>' +
+  '<svg class="d-spark" viewBox="-12 -12 24 24"><path d="M0-11Q1-1 11 0Q1 1 0 11Q-1 1-11 0Q-1-1 0-11Z" fill="#ffd98a"/></svg>';
 document.body.insertBefore(deco, document.body.firstChild);
 
 /* Form order (hanya di order.html) */
