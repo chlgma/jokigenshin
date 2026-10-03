@@ -9,6 +9,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Quattrocento+Sans:wght@400;700" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.lookup .btn{justify-self:start}
+.cardbox{margin-top:24px;max-width:560px;padding:22px;border:1px solid #4a56a8;border-radius:20px;background:radial-gradient(circle at 90% 0%,rgba(124,92,214,.35),transparent 55%),linear-gradient(160deg,#1b2559,#12194a);box-shadow:0 12px 40px rgba(5,8,30,.5)}
+.cardbox .ch{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cardbox .ch h2{margin:0}
+.code{padding:4px 12px;border:1px solid rgba(255,217,138,.5);border-radius:999px;color:#ffd98a;font-weight:700;letter-spacing:.04em;font-size:.95rem}
+.cardbox svg{display:block;width:100%;height:auto;margin:14px 0 8px}
+.cl.on{stroke-dasharray:140;stroke-dashoffset:140;animation:draw 1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.cs{transform-box:fill-box;transform-origin:center;animation:pop .6s ease both}
+@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.status-text{margin:0;font-weight:700;font-size:1.1rem}
+.rew{list-style:none;padding:0;margin:16px 0 0}
+.rew li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid rgba(183,192,238,.25);color:#b7c0ee}
+.rew li.got{color:#eef1ff}
+.tag{padding:3px 12px;border:1px solid #7f8cc9;border-radius:999px;font-size:.85rem;white-space:nowrap}
+.rew li.got .tag{background:#ffd98a;border-color:#ffd98a;color:#0a0f2e}
+.rules{max-width:36rem;color:#b7c0ee;padding-left:20px}
+@media(prefers-reduced-motion:reduce){.cl.on{animation:none;stroke-dashoffset:0}.cs{animation:none}}
+</style>
 </head>
 <body>
 <div id="stars" aria-hidden="true"></div>
@@ -82,20 +102,25 @@ function show(raw) {
   var total = DATA.total || 8;
   var n = Math.max(0, Math.min(m.stamps || 0, total));
   var p = points(total);
-  var svg = '<svg viewBox="0 0 360 220" role="img" aria-label="' + n + ' dari ' + total + ' bintang menyala">';
+  var rewardAt = {};
+  (DATA.rewards || []).forEach(function (r) { rewardAt[r.at - 1] = true; });
+  var svg = '<svg viewBox="0 0 360 220" role="img" aria-label="' + n + ' dari ' + total + ' bintang menyala"><defs><radialGradient id="glow"><stop offset="0" stop-color="#ffd98a" stop-opacity=".6"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient></defs>';
   for (var i = 0; i < total - 1; i++) {
-    svg += '<line class="ln' + (n > i + 1 ? " on" : "") + '" style="animation-delay:' + (i * 0.35) + 's" x1="' + p[i][0] + '" y1="' + p[i][1] + '" x2="' + p[i + 1][0] + '" y2="' + p[i + 1][1] + '"/>';
+    var lit = n > i + 1;
+    svg += '<line class="cl' + (lit ? " on" : "") + '" style="animation-delay:' + (i * 0.35) + 's" x1="' + p[i][0] + '" y1="' + p[i][1] + '" x2="' + p[i + 1][0] + '" y2="' + p[i + 1][1] + '" stroke="' + (lit ? "#ffd98a" : "#7f8cc9") + '" stroke-width="' + (lit ? 2 : 1.5) + '" stroke-opacity="' + (lit ? 0.9 : 0.4) + '" stroke-linecap="round"' + (lit ? "" : ' stroke-dasharray="3 5"') + "/>";
   }
   for (var j = 0; j < total; j++) {
-    var on = n > j;
-    svg += '<circle class="sd' + (on ? " on" : "") + '" style="animation-delay:' + (j * 0.3) + 's" cx="' + p[j][0] + '" cy="' + p[j][1] + '" r="' + (on ? 7 : 5) + '"/>';
+    var on = n > j, x = p[j][0], y = p[j][1];
+    if (rewardAt[j]) svg += '<circle cx="' + x + '" cy="' + y + '" r="13" fill="none" stroke="' + (on ? "#ffd98a" : "#7f8cc9") + '" stroke-opacity="' + (on ? 0.8 : 0.45) + '"' + (on ? "" : ' stroke-dasharray="2 4"') + "/>";
+    if (on) svg += '<g class="cs" style="animation-delay:' + (j * 0.3) + 's"><circle cx="' + x + '" cy="' + y + '" r="20" fill="url(#glow)"/><circle cx="' + x + '" cy="' + y + '" r="7.5" fill="#ffd98a"/><circle cx="' + x + '" cy="' + y + '" r="3" fill="#fff8e0"/></g>';
+    else svg += '<circle cx="' + x + '" cy="' + y + '" r="5.5" fill="#1b2559" stroke="#7f8cc9" stroke-width="1.5"/>';
   }
   svg += "</svg>";
   var left = total - n;
   var status = left <= 0 ? "Rasi lengkap! Kamu berhak atas hadiah akhir." : n + " dari " + total + " bintang menyala. " + left + " order lagi untuk melengkapi rasi.";
   var rew = (DATA.rewards || []).map(function (r) {
     var got = n >= r.at;
-    return '<li class="' + (got ? "got" : "") + '"><span>' + esc(r.text) + "</span><b>" + (got ? "Tercapai" : "Butuh " + (r.at - n) + " bintang lagi") + "</b></li>";
+    return '<li class="' + (got ? "got" : "") + '"><span>' + esc(r.text) + '</span><b class="tag">' + (got ? "Tercapai" : "Butuh " + (r.at - n) + " bintang lagi") + "</b></li>";
   }).join("");
   box.innerHTML = '<div class="ch"><h2>Kartu kamu</h2><span class="code">' + esc(code) + "</span></div>" + svg +
     '<p class="status-text">' + status + '</p><ul class="rew">' + rew + "</ul>";
